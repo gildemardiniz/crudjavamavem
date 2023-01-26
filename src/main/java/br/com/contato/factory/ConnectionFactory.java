@@ -13,17 +13,17 @@ public class ConnectionFactory {
 
     public static Connection createConnectionToMySQL(){
 
-        try {
-            Class.forName(DRIVER_URL);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e.getMessage());
-        }
         Connection connection = null;
-        try {
-            connection = DriverManager.getConnection(DATABASE_URL,USERNAME,PASSWORD);
-        } catch (SQLException e) {
-            throw new RuntimeException(e.getMessage());
-        }
+
+            try {
+                Class.forName(DRIVER_URL);
+                connection = DriverManager.getConnection(DATABASE_URL,USERNAME,PASSWORD);
+            } catch (ClassNotFoundException e) {
+                System.out.println(e.getMessage());
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+            
         return connection;
     }
 
